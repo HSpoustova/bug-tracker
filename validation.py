@@ -1,6 +1,9 @@
 from constants import SEVERITY, PRIORITY, NAME_MIN, NAME_MAX
 
 
+
+
+
 def control_bug(data):
     errors=[]
 
@@ -23,3 +26,5 @@ def control_bug(data):
 
 
     return errors
+
+
