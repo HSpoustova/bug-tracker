@@ -1,4 +1,4 @@
-SEVERITY = ["critical", "hight", "medium", "low"]
+SEVERITY = ["critical", "high", "medium", "low"]
 PRIORITY = ["low", "normal", "high"]
 STATE = ["new", "in progress", "resolved", "closed", "reopened" ]
 NAME_MIN = 3
