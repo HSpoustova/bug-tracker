@@ -15,8 +15,8 @@ def test_name_of_only_spaces_is_empty():
     assert "Name is mandatory." in errors
 
 @pytest.mark.parametrize(
-    "length, passes"
-    [(2, False), (3, False), (100, True), (101, False)],
+    "length, passes",
+    [(2, False), (3, True), (100, True), (101, False)],
     ids=["2-below", "3-min", "100-max", "101-above"],
 )
 

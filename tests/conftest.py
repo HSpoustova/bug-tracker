@@ -2,6 +2,7 @@ import pytest
 
 
 
+
 @pytest.fixture
 
 def valid_bug():
@@ -13,3 +14,4 @@ def valid_bug():
         "severity": "critical",
         "priority": "high"
     }
+
