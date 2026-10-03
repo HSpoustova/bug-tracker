@@ -40,3 +40,26 @@ class BugRepository:
             )
 
         return cursor.lastrowid
+
+    def list_all(self, severity=None):
+        sql = "SELCET * FROM bugs"
+        params = []
+        if severity:
+            sql += "WHERE severity = ?"
+            params.append(severity)
+            sql += " ORDER BY id DESC"
+            with self._connect() as db:
+                return [dict(r) for r in db.execute(sql, params)]
+
+    def find(self, bug_id):
+                with self._connect() as db:
+                     row = db.execute("SELECT * FROM bugs WHERE id = ?", (bug_id, ))
+                return dict(row) if row else None
+
+    def change_status(self, bug_id, new_status):
+         with self._cinnect() as db:
+              db.execute(
+                   "UPDATE bugs SET status = ?, update = ? WHERE id = ?",
+                   (new_status, self._now(), bug_id),
+                   )
+              
