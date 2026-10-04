@@ -8,7 +8,10 @@ PRIORITIES = ["low", "medium", "high"]
 def control_bug(name, priority):
     if not isinstance(name, str):
         return["Name must be text."]
+    if not isinstance(priority, str):
+        return ["Priority must be text."]
     name = name.strip()
+    priority = priority.strip().lower()
     errors=[]
     if len(name) < NAME_MIN:
         errors.append("Name is too short.")
