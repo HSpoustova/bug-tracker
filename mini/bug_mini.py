@@ -12,6 +12,6 @@ def control_bug(name, priority):
     if len(name) > NAME_MAX:
         errors.append("Name is too long.")
     if priority not in PRIORITIES:
-        errors.append("Invalid priority")
+        errors.append("Invalid priority.")
     return errors
 
