@@ -6,6 +6,8 @@ NAME_MAX = 10
 PRIORITIES = ["low", "medium", "high"]
 
 def control_bug(name, priority):
+    if not isinstance(name, str):
+        return["Name must be text."]
     name = name.strip()
     errors=[]
     if len(name) < NAME_MIN:
