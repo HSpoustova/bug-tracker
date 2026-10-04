@@ -6,6 +6,7 @@ NAME_MAX = 10
 PRIORITIES = ["low", "medium", "high"]
 
 def control_bug(name, priority):
+    name = name.strip()
     errors=[]
     if len(name) < NAME_MIN:
         errors.append("Name is too short.")

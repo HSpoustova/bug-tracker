@@ -17,6 +17,7 @@ def test_valid_priority(priority):
     ("Rex", []),
     ("Bella Alik",[]),
     ("Bella a Rex", ["Name is too long."]),
+    ("   ", ["Name is too short."]),
 ])
 def test_name_length(name, expected):
     assert control_bug(name, "medium") == expected
