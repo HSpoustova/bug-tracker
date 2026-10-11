@@ -1,6 +1,10 @@
 from bug_mini import control_bug, control_bug_dict
 import pytest
 
+@pytest.fixture                       # ← říká pytestu: "tohle je fixture"
+def valid_bug():                      # ← jméno fixture = jméno věci, kterou připraví
+    return {"name": "Rex", "priority": "high"}   # ← co připraví: platný bug
+
 
 
 class TestName:
@@ -44,14 +48,26 @@ def test_two_errors():
 
 
 class TestBugDict:
-    def test_valis(self):
-        assert control_bug_dict({"name": "Rex", "priority": "high"}) == []
+    def test_valid(self, valid_bug):
+        assert control_bug_dict(valid_bug) == []
 
-    def test_missing_name(self):
-        assert control_bug_dict({"priority": "medium"}) == ["Name must be text."]
+    def test_short_name(self, valid_bug):
+        valid_bug["name"] = "Al"              
+        assert control_bug_dict(valid_bug) == ["Name is too short."]
+
+    def test_missing_name(self, valid_bug):
+        del valid_bug["name"] 
+        assert control_bug_dict(valid_bug) == ["Name must be text."]
     
-    def test_missing_priority(self):
-        assert control_bug_dict({"name": "Rex"}) == ["Priority must be text."]
+    def test_missing_priority(self, valid_bug):
+        del valid_bug["priority"]
+        assert control_bug_dict(valid_bug) == ["Priority must be text."]
    
     def test_empty(self):
         assert control_bug_dict({}) == ["Name must be text."]
+    
+    def test_invalid_priority_dict(self, valid_bug):
+        valid_bug["priority"] = "urgent"
+        assert control_bug_dict(valid_bug) == ["Invalid priority."]
+
+
