@@ -47,3 +47,11 @@ class TestBugDict:
     def test_valis(self):
         assert control_bug_dict({"name": "Rex", "priority": "high"}) == []
 
+    def test_missing_name(self):
+        assert control_bug_dict({"priority": "medium"}) == ["Name must be text."]
+    
+    def test_missing_priority(self):
+        assert control_bug_dict({"name": "Rex"}) == ["Priority must be text."]
+   
+    def test_empty(self):
+        assert control_bug_dict({}) == ["Name must be text."]
