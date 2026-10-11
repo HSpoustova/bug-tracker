@@ -21,3 +21,8 @@ def control_bug(name, priority):
         errors.append("Invalid priority.")
     return errors
 
+def control_bug_dict(bug):
+    name = bug.get("name")
+    priority = bug.get("priority")
+    return control_bug(name, priority)
+

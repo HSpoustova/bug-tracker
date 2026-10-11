@@ -1,4 +1,4 @@
-from bug_mini import control_bug
+from bug_mini import control_bug, control_bug_dict
 import pytest
 
 
@@ -41,3 +41,9 @@ class TestPriority:
 
 def test_two_errors():
     assert control_bug("Alik a Bella spolu", "urgent") == ["Name is too long.", "Invalid priority."]
+
+
+class TestBugDict:
+    def test_valis(self):
+        assert control_bug_dict({"name": "Rex", "priority": "high"}) == []
+
