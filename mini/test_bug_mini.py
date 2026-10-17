@@ -1,12 +1,6 @@
 from bug_mini import control_bug, control_bug_dict
 import pytest
 
-@pytest.fixture                       # ← říká pytestu: "tohle je fixture"
-def valid_bug():                      # ← jméno fixture = jméno věci, kterou připraví
-    return {"name": "Rex", "priority": "high"}   # ← co připraví: platný bug
-
-
-
 class TestName:
 
     @pytest.mark.parametrize("name, expected", [
