@@ -1,4 +1,4 @@
-from bug_mini import control_bug, control_bug_dict
+from bug_mini import control_bug, control_bug_dict, priority_level
 import pytest
 
 class TestName:
@@ -65,3 +65,20 @@ class TestBugDict:
         assert control_bug_dict(valid_bug) == ["Invalid priority."]
 
 
+class TestPriorityLevel:
+
+    @pytest.mark.parametrize("priority, level", [
+        ("low", 1),
+        ("medium", 2),
+        ("high", 3),
+    ])
+    def test_level(self, priority, level):
+        assert priority_level(priority) == level       
+
+    def test_unknown_priority(self):
+        with pytest.raises(ValueError):                
+            priority_level("urgent")
+        
+    def test_unknown_priority_message(self):
+        with pytest.raises(ValueError, match="urgent"):
+            priority_level("urgent")

@@ -4,6 +4,7 @@
 NAME_MIN = 3
 NAME_MAX = 10
 PRIORITIES = ["low", "medium", "high"]
+PRIORITY_LEVELS = {"low": 1, "medium": 2, "high": 3}
 
 def control_bug(name, priority):
     if not isinstance(name, str):
@@ -26,3 +27,8 @@ def control_bug_dict(bug):
     priority = bug.get("priority")
     return control_bug(name, priority)
 
+def priority_level(priority):
+    """It returns namuber of priority: low=1, medium=2, high=3"""
+    if priority not in PRIORITY_LEVELS:
+        raise ValueError(f"Unknown priority: {priority}")
+    return PRIORITY_LEVELS[priority]
