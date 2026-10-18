@@ -7,4 +7,8 @@ def valid_bug():
 
 @pytest.fixture
 def bugs():
-    return[]
+    print("\nSETUP: new empty bugs") 
+    new_bugs = []
+    yield new_bugs
+    print(f"\nTEARDOWN: {len(new_bugs)} bug(s), cleaning up")
+    new_bugs.clear()
