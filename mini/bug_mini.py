@@ -32,3 +32,10 @@ def priority_level(priority):
     if priority not in PRIORITY_LEVELS:
         raise ValueError(f"Unknown priority: {priority}")
     return PRIORITY_LEVELS[priority]
+
+def add_bug(bugs, bug):
+    errors = control_bug_dict(bug)
+    if errors:
+        return errors
+    bugs.append(bug)
+    return[]

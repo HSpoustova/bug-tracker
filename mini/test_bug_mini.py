@@ -1,4 +1,4 @@
-from bug_mini import control_bug, control_bug_dict, priority_level
+from bug_mini import control_bug, control_bug_dict, priority_level, add_bug
 import pytest
 
 class TestName:
@@ -82,3 +82,22 @@ class TestPriorityLevel:
     def test_unknown_priority_message(self):
         with pytest.raises(ValueError, match="urgent"):
             priority_level("urgent")
+
+class TestAddBug:
+
+    def test_add_valid(self, bugs, valid_bug):
+        assert add_bug(bugs, valid_bug) == []
+        assert len(bugs) == 1
+
+    def test_add_invalid(self, bugs, valid_bug):
+        valid_bug["name"] = "Al"
+        assert add_bug(bugs, valid_bug) == ["Name is too short."]
+        assert bugs == []
+
+    def test_bugs_is_fresh(self, bugs):
+        assert bugs == []
+
+    def test_add_two(self, bugs):
+        add_bug(bugs, {"name": "Alik", "priority": "low"})
+        add_bug(bugs, {"name": "Bella", "priority": "high"})
+        assert len(bugs) == 2

@@ -4,3 +4,7 @@ import pytest
 def valid_bug():
     """Bug name and priority - control""" 
     return {"name": "Rex", "priority": "high"}
+
+@pytest.fixture
+def bugs():
+    return[]
